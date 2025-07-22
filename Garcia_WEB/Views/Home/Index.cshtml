@@ -1,0 +1,59 @@
+﻿@using Garcia_WEB.Models
+@{
+    ViewData["Title"] = "Home Page";
+    var student = ViewBag.Student;
+    var students = ViewBag.Students as List<Garcia_WEB.Models.Student>;
+}
+
+<div class="text-center mb-4">
+    <h2>Welcome, @ViewBag.StudentName!</h2>
+    <p class="lead">@ViewBag.Message</p>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+            <h5>Score Summary</h5>
+            <p><strong>Score:</strong> @ViewBag.Score</p>
+            <p><strong>Grade:</strong> @ViewBag.Grade</p>
+            <p><strong>Status:</strong> @(ViewBag.IsPassed ? "Passed" : "Failed")</p>
+            <p><strong>Exam Date:</strong> @ViewBag.ExamDate</p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+            <h5>Financial Info</h5>
+            <p><strong>Tuition Fee:</strong> ₱@ViewBag.TuitionFee</p>
+            <p><strong>Discounted Net Fee:</strong> ₱@ViewBag.NetFee</p>
+        </div>
+    </div>
+</div>
+
+<div class="card p-3 shadow-sm">
+    <h5>Enrolled Courses (@ViewBag.CourseCount)</h5>
+    <p>@ViewBag.CourseList</p>
+</div>
+
+<div class="mt-4">
+    <h4>Student List</h4>
+    <table class="table table-bordered table-striped">
+        <thead class="table-primary">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Course</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in students)
+            {
+                <tr>
+                    <td>@s.Name</td>
+                    <td>@s.Age</td>
+                    <td>@s.Course</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
